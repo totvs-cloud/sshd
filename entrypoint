@@ -4,7 +4,7 @@ function printHelp() {
     echo "Syntax: user:pass[:e][:[uid][:gid]]..."
 }
 
-function createUser() {
+function addUser() {
     IFS=':' read -a param <<< $@
     user="${param[0]}"
     pass="${param[1]}"
@@ -57,7 +57,7 @@ if [[ -z $1 || $1 =~ ^--help$|^-h$ ]]; then
 fi
 
 for user in "$@"; do
-    createUser $user
+    addUser $user
 done
 
 exec /usr/sbin/sshd -D
