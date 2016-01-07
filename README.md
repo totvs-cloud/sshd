@@ -57,7 +57,7 @@ docker run \
 
 ## Docker Compose
 
-Note: Remplace in the password encrypted `$` with `$$`.
+Tip: Remplace in the password encrypted `$` with `$$`.
 
 ```
 sftp:
