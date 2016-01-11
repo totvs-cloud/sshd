@@ -27,7 +27,7 @@ docker run \
 ## Docker Compose
 
 ```
-sftp:
+sshd:
     image: maltyxx/sshd
     volumes:
         - /share:/home/user/share
@@ -60,7 +60,7 @@ docker run \
 Tip: Remplace in the password encrypted `$` with `$$`.
 
 ```
-sftp:
+sshd:
     image: maltyxx/sshd
     volumes:
         - /share:/home/user/share
