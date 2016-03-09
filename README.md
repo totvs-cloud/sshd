@@ -21,7 +21,7 @@ Easy to use SSH and SFTP ([SSH File Transfer Protocol](https://en.wikipedia.org/
 docker run \
     -v /share:/home/user/share \
     -p 2222:22 -d maltyxx/sshd \
-    user:password:1000:1000
+    user:password:1001:1001
 ```
 
 ## Docker Compose
@@ -33,7 +33,7 @@ sshd:
         - /share:/home/user/share
     ports:
         - "2222:22"
-    command: user:password:1000:1000
+    command: user:password:1001:1001
 ```
 
 # Step 6 Encrypted password
@@ -52,7 +52,7 @@ Tip: you can use makepasswd to generate encrypted passwords:
 docker run \
     -v /share:/home/user/share \
     -p 2222:22 -d maltyxx/sshd \
-    "user:password:e:1000:1000 user2:password2:e:1001:1001"
+    "user:password:e:1001:1001 user2:password2:e:1002:1002"
 ```
 
 ## Docker Compose
@@ -66,7 +66,37 @@ sshd:
         - /share:/home/user/share
     ports:
         - "2222:22"
-    command: "user:password:e:1000:1000 user2:password2:e:1001:1001"
+    command: "user:password:e:1001:1001 user2:password2:e:1002:1002"
+```
+
+## User list
+/users.conf:
+
+```
+user:password:e:1001:1001
+user2:password2:e:1002:1002
+```
+
+### Docker Run
+
+```
+docker run \
+    -v /users.conf:/etc/sshd-users.conf:ro \
+    -v /share:/home/user/share \
+    -p 2222:22 -d maltyxx/sshd \
+    "user:password:e:1001:1001 user2:password2:e:1002:1002"
+```
+
+### Docker Compose
+
+```
+sshd:
+    image: maltyxx/sshd
+    volumes:
+        - /users.conf:/etc/sshd-users.conf:ro
+        - /share:/home/user/share
+    ports:
+        - "2222:22"
 ```
 
 # Step 7 Using SSH key (without password)
