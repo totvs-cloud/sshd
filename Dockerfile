@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN mkdir -p /var/run/sshd
 
 COPY etc/ssh/sshd_config /etc/ssh/sshd_config
-COPY entrypoint /
+COPY entrypoint.sh /
 
 EXPOSE 22
 
