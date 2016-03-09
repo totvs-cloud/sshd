@@ -12,4 +12,4 @@ COPY entrypoint /
 
 EXPOSE 22
 
-ENTRYPOINT ["/entrypoint"]
+ENTRYPOINT ["/entrypoint.sh"]
