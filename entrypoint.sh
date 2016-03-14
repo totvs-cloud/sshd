@@ -39,7 +39,7 @@ function createUser() {
         exit 2
     fi
     
-    useraddOptions="--create-home --no-user-group --shell /bin/bash"
+    useraddOptions="--no-create-home --no-user-group --shell /bin/bash --home-dir /home/$user"
 
     if [ -n "$uid" ]; then
         useraddOptions="$useraddOptions --non-unique --uid $uid"
@@ -52,7 +52,8 @@ function createUser() {
 
         useraddOptions="$useraddOptions --gid $gid"
     fi
-
+    
+    mkdir /home/$user
     useradd $useraddOptions $user
     chown $(id -u $user):$(id -g $user) /home/$user
     chmod 750 /home/$user
