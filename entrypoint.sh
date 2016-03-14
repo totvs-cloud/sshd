@@ -48,7 +48,6 @@ function createUser() {
         useraddOptions="$useraddOptions --gid $gid"
     fi
     
-	mkdir -p /home/$user
     useradd $useraddOptions $user
     chown $(id -u $user):$(id -g $user) /home/$user
     chmod 750 /home/$user
