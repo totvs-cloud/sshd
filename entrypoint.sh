@@ -33,7 +33,7 @@ function createUser() {
         echo "FATAL: You must at least provide a username."
         exit 1
     fi
-    
+
     useraddOptions="--no-create-home --no-user-group --shell /bin/bash --home-dir /home/$user"
 
     if [ -n "$uid" ]; then
@@ -47,10 +47,10 @@ function createUser() {
 
         useraddOptions="$useraddOptions --gid $gid"
     fi
-    
+
     useradd $useraddOptions $user
-    chown $(id -u $user):$(id -g $user) /home/$user
-    chmod 750 /home/$user
+    chown $(id -u $user):$(id -g $user) /
+    chmod 750 /
 
     if [ -z "$pass" ]; then
         pass="$(echo `</dev/urandom tr -dc A-Za-z0-9 | head -c256`)"
